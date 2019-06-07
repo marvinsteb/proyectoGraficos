@@ -28,12 +28,11 @@ class figuraGeometrica {
 
 
 class Cuadrado : public figuraGeometrica {
-    public:
-        Cuadrado(double tamanio){
-            
+    public: 
+        void setLado(double tamanio){
             alto = tamanio;
             ancho = tamanio;
-        }; 
+        }
         double calculaArea(){
             area = pow(alto,2);
             return area;
@@ -49,7 +48,7 @@ class Cuadrado : public figuraGeometrica {
             delay(500000); 
             closegraph(); 
         };
-    private:
+    protected:
         double alto,ancho;
 };
 
@@ -84,6 +83,13 @@ class Triangulo : public figuraGeometrica {
 };
 
 
+class Rectangulo : public  Cuadrado {
+        public:
+        void setLados(double p_alto,double p_ancho){
+              alto = p_alto;
+              ancho = p_ancho;
+        };
+};
 int main(int argc, char** argv) {
     while (true) {
         despliegaMenu();
@@ -102,6 +108,7 @@ void despliegaMenu(){
         printf("\n Proyecto Calculadora de Areas para Figuras Geometricas");
         printf("\n   1. Calcular el Area y el perimetro de un cuadrado.", 163 );
         printf("\n   2. Calcular el area y el perimetro de un triangulo");
+        printf("\n   3. Calcular el area y el perimetro de un rectangulo");
         printf("\n   4. Salir." );
         printf("\n\n   Introduzca opci%cn (1-4): ", 162 );
 
@@ -112,12 +119,14 @@ void despliegaMenu(){
         switch ( opcion )
         {
             case 1:
-            		crearCuadrado();
-                    break;
-
+            	crearCuadrado();
+                break;
             case 2: 
-                    crearTriangulo();
-                    break;
+                crearTriangulo();
+                break;
+            case 3:
+                crearRectangulo();
+                break;
          }
 
          /* Fin del anidamiento */
@@ -130,7 +139,8 @@ void crearCuadrado(){
      printf( "\n   Ingrese el tama%co del lado del cuadrado ", 164 );
      scanf( "%lf", &ladoCuadrado );
 
-     Cuadrado nuevoCuadrado(ladoCuadrado);
+     Cuadrado nuevoCuadrado;
+     nuevoCuadrado.setLado(ladoCuadrado);
      printf("\n   El Area del cuadrado es: %.2f", nuevoCuadrado.calculaArea());
      printf("\n   El perimetro del cuadrado es: %.2f", nuevoCuadrado.calculaPerimetro());
       nuevoCuadrado.dibujar();
@@ -155,6 +165,20 @@ void crearTriangulo(){
     nuevoTriangulo.dibujar();
 
 
+}
+
+
+void crearRectangulo(){
+     double alto, ancho;
+     printf( "\n   Ingrese el alto del rectangulo ");
+     scanf( "%lf", &alto);
+     printf( "\n   Ingrese el ancho del rectangulo ");
+     scanf( "%lf", &ancho);
+     Rectangulo nuevoRectangulo;
+     nuevoRectangulo.setLados(alto,ancho);
+     printf("\n   El Area del rectangulo es: %.2f", nuevoRectangulo.calculaArea());
+     printf("\n   El perimetro del rectangulo es: %.2f", nuevoRectangulo.calculaPerimetro());
+     nuevoRectangulo.dibujar();
 }
 
 void crearCirculo(){
