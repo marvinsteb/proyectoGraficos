@@ -29,11 +29,12 @@ class Cuadrado : public figuraGeometrica {
             ancho = tamanio;
         }; 
         double calculaArea(){
-             
-            return pow(alto,2);
+            area = pow(alto,2);
+            return area;
         };
-        double calcularPerimetro(){
-            return 0.00;
+        double calculaPerimetro(){
+            perimetro = alto * 4.00;
+            return perimetro;
         };
         dibujar(){
             int gd = DETECT, gm; 
@@ -50,8 +51,10 @@ class Cuadrado : public figuraGeometrica {
 
 
 int main(int argc, char** argv) {
-    despliegaMenu();
-    system("PAUSE");
+    while (true) {
+        despliegaMenu();
+    }
+    
     return 0; 
 }
 
@@ -62,7 +65,6 @@ void despliegaMenu(){
 
     do
     {   
-        system("cls");
         printf("\n Proyecto Calculadora de Areas para Figuras Geometricas");
         printf( "\n   1. Calcular el Area y el perimetro de un cuadrado.", 163 );
         
@@ -96,10 +98,12 @@ void crearCuadrado(){
 
      Cuadrado nuevoCuadrado(ladoCuadrado);
      printf("\n   El Area del cuadrado es: %f", nuevoCuadrado.calculaArea());
-     nuevoCuadrado.dibujar();
+     printf("\n   El perimetro del cuadrado es: %f", nuevoCuadrado.calculaPerimetro());
+      nuevoCuadrado.dibujar();
      printf("\n");
-     system("PAUSE");
 }
+
+
 void crearCirculo(){
 
     int gd = DETECT, gm; 
